@@ -1,3 +1,6 @@
+// GLOBAL ANIMATION PARAMS for all demos
+let animParams = {};
+
 const demos = [
   {
     id: 1,
@@ -29,7 +32,9 @@ const demos = [
     thumbnailHtml: `<div class="glitch thumb-text" data-text="ERR" style="font-size: 2rem;">ERR</div>`,
     html: `<div class="glitch" data-text="GLITCH">GLITCH</div>`,
     code: `.glitch {
-  font-size: 4rem;
+  font-size: 8rem;
+  font-weight: 900;
+  text-transform: uppercase;
   position: relative;
   color: white;
 }
@@ -97,22 +102,75 @@ const demos = [
     id: 4,
     name: "Gradient Border",
     type: "layout",
-    thumbnailHtml: `<div class="gradient-card-demo" style="width: 100px; height: 60px;"></div>`,
-    html: `<div class="gradient-card-demo"><div>CONTENT</div></div>`,
-    code: `.gradient-card {
+    thumbnailHtml: `<div class="gradient-card-demo" style="width: 200px; height: 120px; box-shadow: 0 0 15px rgba(0,0,0,0.5);">
+        <div class="card-inner" style="font-size: 0.5rem; padding: 10px;">
+            <h3 style="font-size: 0.8rem; margin-bottom: 2px;">NEON</h3>
+            <p style="font-size: 0.4rem;">SECURE</p>
+        </div>
+    </div>`,
+    html: `<div class="gradient-card-demo">
+  <div class="card-inner">
+    <h3>DATA CARD</h3>
+    <p>Secure Connection</p>
+    <div style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">ENCRYPTED // V.2.0</div>
+  </div>
+</div>`,
+    code: `.gradient-card-demo {
   position: relative;
-  background: #000;
-  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  border-radius: 12px;
+  isolation: isolate;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
-.gradient-card::before {
+
+.gradient-card-demo::before {
   content: "";
   position: absolute;
   inset: -3px;
-  background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+  background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
   z-index: -1;
+  border-radius: 15px;
+  background-size: 300%;
+  animation: gradient-move 2s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.gradient-card-demo::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
+  z-index: -2;
   border-radius: 20px;
-  background-size: 400%;
-  animation: gradient-move 5s linear infinite;
+  background-size: 300%;
+  animation: gradient-move 2s linear infinite;
+  filter: blur(20px);
+  opacity: 0.5;
+}
+
+.card-inner {
+  background: #08081a;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-image: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent);
+}
+
+@keyframes gradient-move {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }`
   },
   {
@@ -129,45 +187,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 /* ... (rest of code) ... */`,
-    code: `import { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
-const AnimatedContent = ({
-  children,
-  container,
-  distance = 100,
-  direction = 'vertical',
-  reverse = false,
-  duration = 0.8,
-  ease = 'power3.out',
-  initialOpacity = 0,
-  animateOpacity = true,
-  scale = 1,
-  threshold = 0.1,
-  delay = 0,
-  disappearAfter = 0,
-  disappearDuration = 0.5,
-  disappearEase = 'power3.in',
-  onComplete,
-  onDisappearanceComplete,
-  className = '',
-  ...props
-}) => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    // GSAP Logic here...
-  }, []); // Dependencies
-
-  return (
-    <div ref={ref} className={className} style={{ visibility: 'hidden' }} {...props}>
-      {children}
-    </div>
-  );
-};`,
     js: `
 // GSAP Logic Ported to Vanilla JS
 // Assuming element with ID 'anim-content-demo'
@@ -196,16 +215,67 @@ if (el) {
     id: 6,
     name: "Scanline Overlay",
     type: "layout",
-    thumbnailHtml: `<div style="width: 100%; height: 100px; background: #222; position: relative; overflow: hidden;"><div class="scanline" style="position: absolute; top:0; left:0;"></div></div>`,
-    html: `<div style="width: 100%; height: 200px; background: #222; position: relative; overflow: hidden;"><div class="scanline" style="position: absolute; top:0; left:0;"></div><h3 style="position: relative; z-index: 2; color: white; text-align: center; top: 80px;">SCANLINE SYSTEM</h3></div>`,
-    code: `.scanline {
+    thumbnailHtml: `<div class="crt-monitor" style="width: 240px; height: 150px; border-width: 3px; box-shadow: none;">
+        <div class="scanline-layer" style="background-size: 100% 2px;"></div>
+        <div class="crt-content" style="padding: 15px; justify-content: flex-start; text-align: left;">
+            <div class="terminal-text" style="font-size: 0.6rem; margin: 2px 0;">> SYS.INIT</div>
+            <div class="terminal-text" style="font-size: 0.6rem; margin: 2px 0;">> OK</div>
+            <div class="blinking-cursor" style="font-size: 0.8rem;">_</div>
+        </div>
+        <div class="crt-overlay"></div>
+    </div>`,
+    html: `<div class="crt-monitor">
+    <div class="scanline-layer"></div>
+    <div class="crt-content">
+        <h3 class="terminal-text">SYSTEM INITIALIZED...</h3>
+        <p class="terminal-text">> CONNECTING TO SERVER</p>
+        <p class="terminal-text">> 100% SECURE</p>
+        <div class="blinking-cursor">_</div>
+    </div>
+    <div class="crt-overlay"></div>
+</div>`,
+    code: `.crt-monitor {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  background: #0a0a0a;
+  overflow: hidden;
+  border: 4px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.scanline-layer {
+  position: absolute;
+  top: 0; left: 0;
   width: 100%; height: 100%;
   background: linear-gradient(
     to bottom,
-    transparent 50%,
-    rgba(0,0,0,0.5) 50%
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0.25)
   );
   background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.crt-content {
+  padding: 40px;
+  color: #0aff00; /* Retro Green */
+  font-family: 'Courier New', monospace;
+  text-shadow: 0 0 5px #0aff00;
+  height: 100%;
+}
+
+.crt-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
 }`
   },
   {
@@ -343,21 +413,56 @@ export default FadeContent;`
     id: 9,
     name: "Electric Border",
     type: "animations",
-    thumbnailHtml: `<div style="border: 2px solid cyan; border-radius:10px; padding:10px; color:cyan; font-weight:bold; text-align:center;">ELECTRIC</div>`,
+    thumbnailHtml: `<div class="thumb-electric-real">
+        <svg class="electric-svg" width="100%" height="100%">
+            <defs>
+                <filter id="electric-noise">
+                    <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch">
+                        <animate attributeName="baseFrequency" values="0.8;0.85;0.75;0.8" dur="0.2s" repeatCount="indefinite" />
+                    </feTurbulence>
+                    <feDisplacementMap in="SourceGraphic" scale="8" />
+                </filter>
+            </defs>
+            <rect class="electric-rect" x="5%" y="5%" width="90%" height="90%" rx="10" ry="10" />
+        </svg>
+        <div class="thumb-content-electric">
+            <h4>Electric Card</h4>
+            <div class="mini-btn">Get Started</div>
+        </div>
+    </div>`,
     html: `<div id="electric-border-demo"><div style="padding: 2rem; color: white;"><h3>Electric Card</h3><p>An electric border for shocking your users, the right way.</p><button class="cyber-btn" style="margin-top:20px;">Get Started</button></div></div>`,
-    code: `// ... (Electric Border Code) ...`
+    code: `/* Original Electric Border */
+.electric-border {
+  position: relative;
+  padding: 2rem;
+  border: 2px solid cyan;
+  box-shadow: 0 0 10px cyan;
+  /* Uses Canvas for advanced animation */
+}`
   },
   {
     id: 10,
     name: "Glare Hover",
     type: "animations",
-    thumbnailHtml: `<div style="background:#222; border-radius:10px; padding:10px; color:white; font-weight:bold; text-align:center; box-shadow: 0 0 10px rgba(255,255,255,0.2);">GLARE</div>`,
+    thumbnailHtml: `<div class="thumb-glare-wrapper">
+        <div class="thumb-glare-text">GLARE</div>
+    </div>`,
     html: `<div id="glare-hover-demo"><h2 style="font-size: 3rem; font-weight: 900; color: #333; margin: 0;">Hover Me</h2></div>`,
-    code: `// GLARE HOVER COMPONENT
-// Usage:
-// <GlareHover glareColor="#ffffff" glareOpacity={0.3} glareAngle={-30} glareSize={300} transitionDuration={800} playOnce={false}>
-//   <h2>Hover Me</h2>
-// </GlareHover>`
+    code: `.glare-hover {
+  position: relative;
+  overflow: hidden;
+}
+.glare-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-30deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+.glare-hover:hover::before {
+  transform: translateX(100%);
+}`
   },
   {
     id: 11,
@@ -365,8 +470,121 @@ export default FadeContent;`
     type: "animations",
     thumbnailHtml: `<div style="display:flex; gap:5px; justify-content:center; align-items:center; color:white; font-size:1.5rem;"><span>∞</span><span>⟳</span></div>`,
     html: `<div id="logo-loop-demo" style="width:100%; height:200px; display:flex; align-items:center;"></div>`,
-    code: `// LOGO LOOP COMPONENT
-// See usage logic below`
+    code: `/* LOGO LOOP */
+.logoloop {
+  display: flex;
+  overflow: hidden;
+  --logoloop-gap: 32px;
+}
+.logoloop__track {
+  display: flex;
+  animation: scroll linear infinite; /* JS handles this efficiently */
+}
+/* See renderLogoLoop() in script.js for full logic */`
+  },
+  {
+    id: 12,
+    name: "Interactive Cubes",
+    type: "animations",
+    thumbnailHtml: `<div class="thumb-cubes" style="display:grid; grid-template-columns:repeat(3,1fr); gap:4px; width:100%; height:100%; padding: 25px; box-sizing:border-box;">
+      <div style="background:#060010; border:1px solid #fff;"></div><div style="background:#060010; border:1px solid #fff;"></div><div style="background:#060010; border:1px solid #fff;"></div>
+      <div style="background:#060010; border:1px solid #fff;"></div><div style="background:#060010; border:1px solid #fff;"></div><div style="background:#060010; border:1px solid #fff;"></div>
+      <div style="background:#060010; border:1px solid #fff;"></div><div style="background:#060010; border:1px solid #fff;"></div><div style="background:#060010; border:1px solid #fff;"></div>
+    </div>`,
+    html: `<div id="cubes-demo" class="default-animation" style="width: 60vmin; aspect-ratio: 1/1;"></div>`,
+    code: `import { useCallback, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import './Cubes.css';
+
+// ... (Source code provided by user)
+// See renderCubes() implementation in script.js`
+  },
+  {
+    id: 13,
+    name: "Magnet Lines",
+    type: "animations",
+    thumbnailHtml: `<div class="thumb-magnet" style="width:100%; height:100%; background:#111; overflow:hidden;"></div>`,
+    html: `<div id="magnet-lines-demo" style="width:100%; height:300px; background: #111; overflow:hidden; border-radius:12px;"></div>`,
+    code: `import { useRef, useEffect } from 'react';
+import './MagnetLines.css';
+
+export default function MagnetLines({
+  rows = 9,
+  columns = 9,
+  containerSize = '80vmin',
+  lineColor = '#efefef',
+  lineWidth = '1vmin',
+  lineHeight = '6vmin',
+  baseAngle = -10,
+  className = '',
+  style = {}
+}) {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const items = container.querySelectorAll('span');
+
+    const onPointerMove = pointer => {
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const centerX = rect.x + rect.width / 2;
+        const centerY = rect.y + rect.height / 2;
+
+        const b = pointer.x - centerX;
+        const a = pointer.y - centerY;
+        const c = Math.sqrt(a * a + b * b) || 1;
+        const r = ((Math.acos(b / c) * 180) / Math.PI) * (pointer.y > centerY ? 1 : -1);
+
+        item.style.setProperty('--rotate', \`\${r}deg\`);
+      });
+    };
+
+    window.addEventListener('pointermove', onPointerMove);
+
+    if (items.length) {
+      const middleIndex = Math.floor(items.length / 2);
+      const rect = items[middleIndex].getBoundingClientRect();
+      onPointerMove({ x: rect.x, y: rect.y });
+    }
+
+    return () => {
+      window.removeEventListener('pointermove', onPointerMove);
+    };
+  }, []);
+
+  const total = rows * columns;
+  const spans = Array.from({ length: total }, (_, i) => (
+    <span
+      key={i}
+      style={{
+        '--rotate': \`\${baseAngle}deg\`,
+        backgroundColor: lineColor,
+        width: lineWidth,
+        height: lineHeight
+      }}
+    />
+  ));
+
+  return (
+    <div
+      ref={containerRef}
+      className={\`magnetLines-container \${className}\`}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: \`repeat(\${columns}, 1fr)\`,
+        gridTemplateRows: \`repeat(\${rows}, 1fr)\`,
+        width: containerSize,
+        height: containerSize,
+        ...style
+      }}
+    >
+      {spans}
+    </div>
+  );
+}`
   }
 ];
 
@@ -452,6 +670,13 @@ function initIndexPage() {
       });
 
       grid.appendChild(card);
+
+      // Initialize Dynamic Thumbnails
+      if (demo.id === 13) {
+        setTimeout(() => initMagnetThumbnail(card.querySelector('.thumb-magnet')), 50);
+      } else if (demo.id === 12) {
+        setTimeout(() => initCubesThumbnail(card.querySelector('.thumb-cubes')), 50);
+      }
     });
   }
 
@@ -532,7 +757,7 @@ function initDemoPage() {
   }
 
   // Default Animation Params
-  let animParams = {
+  animParams = {
     direction: 'vertical',
     ease: 'power3.out',
     reverse: false,
@@ -765,7 +990,7 @@ import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiVite, SiGraphql } 
 
 // FULL CODE INCLUDED IN ARTIFACTS OR SEPARATE FILE`;
     }
-    return "// No usage example available";
+    return null;
   };
 
   // Helper to update label values AND Usage Code
@@ -809,7 +1034,15 @@ import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiVite, SiGraphql } 
     // Usage Code Update
     const usageEl = document.getElementById("code-usage");
     if (usageEl) {
-      usageEl.textContent = getUsageCode();
+      const usageCode = getUsageCode();
+      const parentSection = usageEl.closest('.code-section');
+
+      if (usageCode) {
+        usageEl.textContent = usageCode;
+        if (parentSection) parentSection.style.display = 'block';
+      } else {
+        if (parentSection) parentSection.style.display = 'none';
+      }
     }
   };
 
@@ -1301,13 +1534,17 @@ import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiVite, SiGraphql } 
       updateLabels();
 
     } else if (id === 12) {
-      // Liquid Ether
-      setTimeout(renderLiquidEther, 50);
+      // Interactive Cubes
+      if (typeof renderCubes === 'function') {
+        setTimeout(renderCubes, 50);
+      }
       updateLabels();
 
     } else if (id === 13) {
       // Magnet Lines
-      setTimeout(renderMagnetLines, 50);
+      if (typeof renderMagnetLines === 'function') {
+        setTimeout(renderMagnetLines, 50);
+      }
       updateLabels();
 
     } else if (demo.js) {
@@ -1486,37 +1723,38 @@ const renderLogoLoop = () => {
   container.innerHTML = ''; // Clear previous
   container.className = `logoloop ${animParams.loopFade ? 'logoloop--fade' : ''} ${animParams.loopScale ? 'logoloop--scale-hover' : ''}`;
 
-  // Styles
+  // Apply styles dynamically
+  container.style.width = '100%';
+  container.style.height = '200px';
+  container.style.display = 'flex';
+  container.style.alignItems = 'center';
+  container.style.justifyContent = 'flex-start'; // Start from left usually
   container.style.setProperty('--logoloop-gap', `${animParams.loopGap}px`);
   container.style.setProperty('--logoloop-logoHeight', `${animParams.loopHeight}px`);
 
   // Fake Logo Data (SVGs)
   const logos = [
-    '<svg viewBox="0 0 24 24"><path fill="#61DAFB" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/></svg>', // React-ish
-    '<svg viewBox="0 0 24 24"><path fill="#000000" stroke="white" stroke-width="2" d="M12 2L2 22h20L12 2z"/></svg>', // Next-ish
-    '<svg viewBox="0 0 24 24"><path fill="#3178C6" d="M2 2h20v20H2z M12 6v12 M6 12h12"/></svg>', // TS
-    '<svg viewBox="0 0 24 24"><path fill="#38B2AC" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>', // Tailwind
-    '<svg viewBox="0 0 24 24"><path fill="#F0DB4F" d="M2 2h20v20H2z"/><path fill="#323330" d="M10 10h4v4h-4z"/></svg>', // JS
-    '<svg viewBox="0 0 24 24"><path fill="#FF4154" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>', // Other
+    `<svg viewBox="0 0 24 24"><path fill="#61DAFB" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/></svg>`,
+    `<svg viewBox="0 0 24 24"><path fill="#ffffff" stroke="white" stroke-width="2" d="M12 2L2 22h20L12 2z"/></svg>`,
+    `<svg viewBox="0 0 24 24"><path fill="#3178C6" d="M2 2h20v20H2z M12 6v12 M6 12h12"/></svg>`,
+    `<svg viewBox="0 0 24 24"><path fill="#38B2AC" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`,
+    `<svg viewBox="0 0 24 24"><path fill="#F0DB4F" d="M2 2h20v20H2z"/><path fill="#323330" d="M10 10h4v4h-4z"/></svg>`,
+    `<svg viewBox="0 0 24 24"><path fill="#FF4154" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>`,
   ];
 
   // 2. Create Track
   const track = document.createElement('div');
   track.className = 'logoloop__track';
 
-  // 3. Create List(s) - We need enough to fill screen + buffer
-  // For simplicity in this demo, we'll create fixed 4 copies which is usually enough for desktop
-  const distinctLogos = logos.length;
-
-  for (let c = 0; c < 4; c++) {
+  // 3. Create List(s)
+  // Fill screen logic: simplistic here, just 6 copies
+  for (let c = 0; c < 6; c++) {
     const list = document.createElement('ul');
     list.className = 'logoloop__list';
     logos.forEach((svgStr, i) => {
       const li = document.createElement('li');
       li.className = 'logoloop__item';
       li.innerHTML = svgStr;
-      // Add fake title
-      li.title = `Logo ${i + 1}`;
       list.appendChild(li);
     });
     track.appendChild(list);
@@ -1525,33 +1763,44 @@ const renderLogoLoop = () => {
   container.appendChild(track);
 
   // 4. Animation Logic
-  let lastTime = 0;
+  let lastTime = performance.now();
   let offset = 0;
-  const speed = parseFloat(animParams.loopSpeed); // px/s
-  const direction = animParams.loopDirection || 'left'; // left or right
+  const speed = parseFloat(animParams.loopSpeed);
+  const direction = animParams.loopDirection || 'left';
 
   const loop = (time) => {
-    if (!logoLoopAnimId) return; // cancelled
+    if (!logoLoopAnimId) return;
     if (!document.contains(track)) return;
 
     const dt = (time - lastTime) / 1000;
     lastTime = time;
 
-    // Get single sequence width
+    // Sanity check dt
+    if (dt > 0.1) {
+      // Tab inactive or lag spike, skip frame drift
+      logoLoopAnimId = requestAnimationFrame(loop);
+      return;
+    }
+
     const list = track.querySelector('.logoloop__list');
-    if (!list) return;
+    if (!list) {
+      logoLoopAnimId = requestAnimationFrame(loop);
+      return;
+    }
+
     const seqWidth = list.offsetWidth;
 
     if (seqWidth > 0) {
-      // Move
       const move = speed * dt;
 
       if (direction === 'left') {
         offset += move;
-        if (offset >= seqWidth) offset -= seqWidth;
+        if (offset >= seqWidth) offset %= seqWidth;
       } else {
         offset -= move;
-        if (offset <= 0) offset += seqWidth;
+        if (offset <= 0) {
+          offset = (offset % seqWidth) + seqWidth;
+        }
       }
 
       track.style.transform = `translate3d(-${offset}px, 0, 0)`;
@@ -1560,187 +1809,483 @@ const renderLogoLoop = () => {
     logoLoopAnimId = requestAnimationFrame(loop);
   };
 
-  lastTime = performance.now();
   logoLoopAnimId = requestAnimationFrame(loop);
 };
 
-// LIQUID ETHER (THREE.JS)
-let liquidAnimId = null;
-const renderLiquidEther = () => {
-  const container = document.getElementById('liquid-ether-demo');
+// INTERACTIVE CUBES (GSAP)
+const renderCubes = () => {
+  const container = document.getElementById('cubes-demo');
   if (!container) return;
 
-  // Load Three.js dynamically if not present
-  if (!window.THREE) {
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    script.onload = () => initLiquidScene(container);
-    document.head.appendChild(script);
-  } else {
-    initLiquidScene(container);
-  }
-};
+  // Use params/defaults
+  // "gridSize={8} maxAngle={45} radius={3} borderStyle='2px dashed #B19EEF' faceColor='#1a1a2e' rippleColor='#ff6b6b' rippleSpeed={1.5} autoAnimate rippleOnClick"
+  const gridSize = 8;
+  const maxAngle = 45;
+  const radius = 3;
+  const borderStyle = '2px dashed #B19EEF';
+  const faceColor = '#1a1a2e';
+  const rippleColor = '#ff6b6b';
+  const rippleSpeed = 1.5;
+  const autoAnimate = true;
+  const rippleOnClick = true;
 
-const initLiquidScene = (container) => {
-  // Basic Three.js Setup
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
-
-  const rect = container.getBoundingClientRect();
-  renderer.setSize(rect.width, rect.height);
-  container.innerHTML = '';
-  container.appendChild(renderer.domElement);
-
-  // Dynamic glsl
-  const fragmentShader = `
-        uniform float time;
-        uniform vec2 resolution;
-        uniform vec3 color1;
-        uniform vec3 color2;
-        uniform float distortion;
-
-        // Simplex Noise (Minimal)
-        vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
-        float snoise(vec2 v){
-            const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
-            vec2 i  = floor(v + dot(v, C.yy) );
-            vec2 x0 = v -   i + dot(i, C.xx);
-            vec2 i1;
-            i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-            vec4 x12 = x0.xyxy + C.xxzz;
-            x12.xy -= i1;
-            i = mod(i, 289.0);
-            vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 )) + i.x + vec3(0.0, i1.x, 1.0 ));
-            vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-            m = m*m ;
-            m = m*m ;
-            vec3 x = 2.0 * fract(p * C.www) - 1.0;
-            vec3 h = abs(x) - 0.5;
-            vec3 ox = floor(x + 0.5);
-            vec3 a0 = x - ox;
-            m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
-            vec3 g;
-            g.x  = a0.x  * x0.x  + h.x  * x0.y;
-            g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-            return 130.0 * dot(m, g);
-        }
-
-        void main() {
-            vec2 uv = gl_FragCoord.xy / resolution.xy;
-            float noise = snoise(uv * 3.0 + time * 0.2);
-            float d = snoise(uv * distortion + noise + time * 0.1);
-            
-            vec3 c = mix(color1, color2, d * 0.5 + 0.5);
-            gl_FragColor = vec4(c, 1.0);
-        }
-    `;
-
-  const uniforms = {
-    time: { value: 0 },
-    resolution: { value: new THREE.Vector2(rect.width, rect.height) },
-    color1: { value: new THREE.Color(animParams.color1 || "#1a0b2e") },
-    color2: { value: new THREE.Color(animParams.color2 || "#763bfa") },
-    distortion: { value: parseFloat(animParams.distortion || 1.5) }
-  };
-
-  const geometry = new THREE.PlaneGeometry(2, 2);
-  const material = new THREE.ShaderMaterial({
-    uniforms: uniforms,
-    fragmentShader: fragmentShader
+  // Build the grid HTML
+  // We need <div class="default-animation--scene"><div class="cube"><faces...></div></div>
+  const scene = document.createElement('div');
+  scene.className = 'default-animation--scene';
+  Object.assign(scene.style, {
+    gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+    gridTemplateRows: `repeat(${gridSize}, 1fr)`,
   });
 
-  const plane = new THREE.Mesh(geometry, material);
-  scene.add(plane);
+  // Generate cubes
+  const cells = gridSize * gridSize;
+  for (let i = 0; i < cells; i++) {
+    const r = Math.floor(i / gridSize);
+    const c = i % gridSize;
+    const cube = document.createElement('div');
+    cube.className = 'cube';
+    cube.dataset.row = r;
+    cube.dataset.col = c;
 
-  const animate = () => {
-    if (!document.getElementById('liquid-ether-demo')) return;
+    ['top', 'bottom', 'left', 'right', 'front', 'back'].forEach(faceName => {
+      const face = document.createElement('div');
+      face.className = `cube-face cube-face--${faceName}`;
+      // Styles from wrapperStyle
+      face.style.border = borderStyle;
+      face.style.background = faceColor;
+      cube.appendChild(face);
+    });
 
-    uniforms.time.value += 0.01 * parseFloat(animParams.speed || 0.5);
+    scene.appendChild(cube);
+  }
+  container.innerHTML = '';
+  container.appendChild(scene);
 
-    // Update uniforms from params
-    uniforms.color1.value.set(animParams.color1 || "#1a0b2e");
-    uniforms.color2.value.set(animParams.color2 || "#763bfa");
-    uniforms.distortion.value = parseFloat(animParams.distortion || 1.5);
+  // LOGIC Ported from React
+  let rafId = null;
+  let idleTimer = null;
+  // let userActive = false; // We can use a simple flag
 
-    renderer.render(scene, camera);
-    liquidAnimId = requestAnimationFrame(animate);
+  const tiltAt = (rowCenter, colCenter) => {
+    const cubes = scene.querySelectorAll('.cube');
+    cubes.forEach(cube => {
+      const r = +cube.dataset.row;
+      const c = +cube.dataset.col;
+      const dist = Math.hypot(r - rowCenter, c - colCenter);
+      if (dist <= radius) {
+        const pct = 1 - dist / radius;
+        const angle = pct * maxAngle;
+        gsap.to(cube, {
+          duration: 0.3, // enter
+          ease: 'power3.out',
+          overwrite: true,
+          rotateX: -angle,
+          rotateY: angle
+        });
+      } else {
+        gsap.to(cube, {
+          duration: 0.6, // leave
+          ease: 'power3.out', // easing
+          overwrite: true,
+          rotateX: 0,
+          rotateY: 0
+        });
+      }
+    });
   };
-  animate();
+
+  // Mouse Interaction
+  const onPointerMove = (e) => {
+    // userActive = true;
+    // if(idleTimer) clearTimeout(idleTimer);
+
+    const rect = scene.getBoundingClientRect();
+    const cellW = rect.width / gridSize;
+    const cellH = rect.height / gridSize;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const colCenter = x / cellW;
+    const rowCenter = y / cellH;
+
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => tiltAt(rowCenter, colCenter));
+
+    // idleTimer = setTimeout(() => userActive = false, 3000); // Resume auto
+  };
+
+  // Click Ripple
+  const onClick = (e) => {
+    if (!rippleOnClick) return;
+    const rect = scene.getBoundingClientRect();
+    const cellW = rect.width / gridSize;
+    const cellH = rect.height / gridSize;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const colHit = Math.floor(x / cellW);
+    const rowHit = Math.floor(y / cellH);
+
+    const baseRingDelay = 0.15;
+    const baseAnimDur = 0.3;
+    const baseHold = 0.6;
+
+    const spreadDelay = baseRingDelay / rippleSpeed;
+    const animDuration = baseAnimDur / rippleSpeed;
+    const holdTime = baseHold / rippleSpeed;
+
+    const rings = {};
+    const cubes = scene.querySelectorAll('.cube');
+    cubes.forEach(cube => {
+      const r = +cube.dataset.row;
+      const c = +cube.dataset.col;
+      const dist = Math.hypot(r - rowHit, c - colHit);
+      const ring = Math.round(dist);
+      if (!rings[ring]) rings[ring] = [];
+      rings[ring].push(cube);
+    });
+
+    Object.keys(rings).map(Number).sort((a, b) => a - b).forEach(ring => {
+      const delay = ring * spreadDelay;
+      const faces = [];
+      rings[ring].forEach(cube => {
+        faces.push(...cube.querySelectorAll('.cube-face'));
+      });
+
+      // Flash color
+      gsap.to(faces, {
+        backgroundColor: rippleColor,
+        duration: animDuration,
+        delay: delay,
+        ease: 'power3.out'
+      });
+      // Revert
+      gsap.to(faces, {
+        backgroundColor: faceColor,
+        duration: animDuration,
+        delay: delay + animDuration + holdTime,
+        ease: 'power3.out'
+      });
+    });
+  };
+
+  const resetAll = () => {
+    const cubes = scene.querySelectorAll('.cube');
+    gsap.to(cubes, {
+      duration: 0.6,
+      rotateX: 0,
+      rotateY: 0,
+      ease: 'power3.out'
+    });
+  };
+
+  scene.addEventListener('pointermove', onPointerMove);
+  scene.addEventListener('mouseleave', resetAll);
+  scene.addEventListener('click', onClick);
+
+  // Initial random shimmy
+  tiltAt(gridSize / 2, gridSize / 2);
+  setTimeout(resetAll, 500);
+
 };
 
-// MAGNET LINES (CANVAS)
-let magnetAnimId = null;
+// MAGNET LINES (DOM Version)
 const renderMagnetLines = () => {
   const container = document.getElementById('magnet-lines-demo');
   if (!container) return;
 
-  container.innerHTML = '<canvas style="width:100%; height:100%;"></canvas>';
-  const canvas = container.querySelector('canvas');
-  const ctx = canvas.getContext('2d');
-
-  let rect = container.getBoundingClientRect();
-  canvas.width = rect.width;
-  canvas.height = rect.height;
-
-  const rows = parseInt(animParams.rows || 10);
-  const cols = parseInt(animParams.cols || 10);
-  const radius = parseInt(animParams.radius || 200);
-  const color = animParams.color || "#61dafb";
-
-  const gapX = canvas.width / cols;
-  const gapY = canvas.height / rows;
-
-  // Mouse tracking
-  let mx = -1000, my = -1000;
-  container.addEventListener('mousemove', (e) => {
-    const r = container.getBoundingClientRect();
-    mx = e.clientX - r.left;
-    my = e.clientY - r.top;
+  container.innerHTML = '';
+  Object.assign(container.style, {
+    display: 'grid',
+    placeItems: 'center',
+    overflow: 'hidden' // contain the grid
   });
-  container.addEventListener('mouseleave', () => { mx = -1000; my = -1000; });
 
-  const draw = () => {
-    if (!document.getElementById('magnet-lines-demo')) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Params
+  const rows = parseInt(animParams.rows) || 9;
+  const cols = parseInt(animParams.cols) || 9;
+  const lineColor = animParams.color || "#efefef";
+  const lineWidth = "4px"; // 1vmin approx
+  const lineHeight = "24px"; // 6vmin approx
+  const baseAngle = -10;
 
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 2;
-    ctx.lineCap = 'round';
+  // Create Grid Wrapper
+  const grid = document.createElement('div');
+  grid.className = 'magnetLines-container';
+  Object.assign(grid.style, {
+    display: 'grid',
+    gridTemplateColumns: `repeat(${cols}, 1fr)`,
+    gridTemplateRows: `repeat(${rows}, 1fr)`,
+    width: '60vmin', // Container Size (Bigger)
+    height: '60vmin',
+    gap: '10px',
+    transformStyle: 'preserve-3d', // Enable 3D
+    transition: 'transform 0.1s ease-out'
+  });
 
-    for (let i = 0; i <= cols; i++) {
-      for (let j = 0; j <= rows; j++) {
-        const x = i * gapX;
-        const y = j * gapY;
+  // 3D Tilt Logic
+  const handleTilt = (e) => {
+    const rect = grid.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-        // Angle to mouse
-        const dx = mx - x;
-        const dy = my - y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+    // Calculate rotation (max 15 deg)
+    const rotateX = ((y - centerY) / centerY) * -15;
+    const rotateY = ((x - centerX) / centerX) * 15;
 
-        let angle = 0;
-        if (dist < radius) {
-          angle = Math.atan2(dy, dx);
-        } else {
-          // Default vertical
-          angle = Math.PI / 2;
-        }
-
-        // Draw Line
-        const len = 15;
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(angle);
-        ctx.beginPath();
-        ctx.moveTo(-len / 2, 0);
-        ctx.lineTo(len / 2, 0);
-        ctx.stroke();
-        ctx.restore();
-      }
-    }
-    magnetAnimId = requestAnimationFrame(draw);
+    grid.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
-  draw();
+
+  const resetTilt = () => {
+    grid.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+  };
+
+  // Attach to container (so it works even when not hovering the grid directly if we wanted, 
+  // but hovering grid feels more direct). Let's attach to window or container?
+  // User sent index card image -> Index card tilts when you hover IT.
+  // So we attach to 'container' (the panel) or 'grid'? 
+  // Attaching to 'container' gives a better feel for "outside animation".
+  container.addEventListener('mousemove', handleTilt);
+  container.addEventListener('mouseleave', resetTilt);
+
+  const total = rows * cols;
+  for (let i = 0; i < total; i++) {
+    const span = document.createElement('span');
+    Object.assign(span.style, {
+      display: 'block',
+      backgroundColor: lineColor,
+      width: lineWidth,
+      height: lineHeight,
+      transform: `rotate(${baseAngle}deg)`, // Initial
+      transition: 'transform 0.1s ease-out' // Smooth it slightly
+    });
+    // We'll update transform directly in JS for performance
+    // or use CSS var if we want strict adherence, but direct transform is often smoother in vanilla loop
+    // The React code uses --rotate var. Let's send that.
+    span.style.transform = `rotate(var(--rotate, ${baseAngle}deg))`;
+
+    grid.appendChild(span);
+  }
+
+  container.appendChild(grid);
+
+  // Event Listener
+  const items = grid.querySelectorAll('span');
+
+  const onPointerMove = (e) => {
+    const pointer = { x: e.clientX, y: e.clientY };
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const centerX = rect.x + rect.width / 2;
+      const centerY = rect.y + rect.height / 2;
+
+      const b = pointer.x - centerX;
+      const a = pointer.y - centerY;
+      const c = Math.sqrt(a * a + b * b) || 1;
+      const r = ((Math.acos(b / c) * 180) / Math.PI) * (pointer.y > centerY ? 1 : -1);
+
+      item.style.setProperty('--rotate', `${r}deg`);
+    });
+  };
+
+  window.addEventListener('pointermove', onPointerMove);
+
+  // Initial trigger
+  if (items.length) {
+    const middleIndex = Math.floor(items.length / 2);
+    const rect = items[middleIndex].getBoundingClientRect();
+    onPointerMove({ clientX: rect.x + 100, clientY: rect.y + 100 });
+  }
+
+  // NOTE: In a real SPA, we'd removeEventListener. 
+  // Since we don't have a clear "unmount" here, we'll bank on the page reload or overwrite.
+  // Ideally, attach to container if possible, but the code uses window.
+};
+
+
+
+// MAGNET LINES THUMBNAIL (For Index Page)
+const initMagnetThumbnail = (container) => {
+  if (!container) return;
+  container.innerHTML = '';
+
+  // Grid settings for smaller thumbnail
+  const rows = 5;
+  const cols = 5;
+  const gap = 10;
+  // Use CSS Grid
+  Object.assign(container.style, {
+    display: 'grid',
+    gridTemplateColumns: `repeat(${cols}, 1fr)`,
+    gridTemplateRows: `repeat(${rows}, 1fr)`,
+    gap: `${gap}px`,
+    padding: '20px', // padding inside card
+    boxSizing: 'border-box'
+  });
+
+  const total = rows * cols;
+  for (let i = 0; i < total; i++) {
+    const span = document.createElement('span');
+    Object.assign(span.style, {
+      display: 'block',
+      backgroundColor: '#efefef',
+      borderRadius: '4px',
+      width: '100%',
+      height: '100%',
+      transform: 'rotate(-10deg)',
+      transition: 'transform 0.1s ease'
+    });
+    container.appendChild(span);
+  }
+
+  // Attach listener to the CARD (parent of container) or Window?
+  // Ideally, the tracking feels best on window/document for global effect, 
+  // or on the grid itself. The user demo tracks on window.
+  // For the thumbnail, let's track on the container to keep it self-contained?
+  // Actually, standard behavior in index is usually per-card.
+
+  const items = container.querySelectorAll('span');
+  const onMove = (e) => {
+    const pointer = { x: e.clientX, y: e.clientY };
+    items.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const centerX = rect.x + rect.width / 2;
+      const centerY = rect.y + rect.height / 2;
+      const b = pointer.x - centerX;
+      const a = pointer.y - centerY;
+      const c = Math.sqrt(a * a + b * b) || 1;
+      const r = ((Math.acos(b / c) * 180) / Math.PI) * (pointer.y > centerY ? 1 : -1);
+      item.style.transform = `rotate(${r}deg)`;
+    });
+  };
+
+  // If we want it to react even when not hovering the specific card (global feel):
+  // document.addEventListener('mousemove', onMove); 
+  // But that might be heavy for a thumb. Let's do it on the card container hover.
+  // The 'card' element isn't directly passed here, but 'container' is inside 'card'.
+  // Let's attach to 'container' for now.
+  container.addEventListener('mousemove', onMove);
+
+  // Also random initial movement
+  if (items.length) {
+    const rect = items[12].getBoundingClientRect(); // center one
+    onMove({ clientX: rect.x + 50, clientY: rect.y - 50 });
+  }
+};
+
+
+
+// INTERACTIVE CUBES THUMBNAIL (For Index Page)
+const initCubesThumbnail = (container) => {
+  if (!container) return;
+  container.innerHTML = '';
+
+  // Mini config
+  const gridSize = 6; // More detailed (6x6)
+  const gap = 2; // Tighter gap
+
+  Object.assign(container.style, {
+    display: 'grid',
+    gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
+    gridTemplateRows: `repeat(${gridSize}, 1fr)`,
+    gap: `${gap}px`,
+    padding: '15px',
+    boxSizing: 'border-box'
+  });
+
+  const total = gridSize * gridSize;
+  for (let i = 0; i < total; i++) {
+    const cube = document.createElement('div');
+    cube.className = 'cube'; // Re-use main cube CSS
+
+    ['top', 'bottom', 'left', 'right', 'front', 'back'].forEach(faceName => {
+      const face = document.createElement('div');
+      face.className = `cube-face cube-face--${faceName}`;
+      // Match the Demo Look: Dashed + Purple
+      face.style.border = '1px dashed #B19EEF';
+      face.style.background = '#060010';
+      face.style.opacity = '0.7'; // Slight transparency for layering
+      cube.appendChild(face);
+    });
+
+    // Add data attrs for math
+    const r = Math.floor(i / gridSize);
+    const c = i % gridSize;
+    cube.dataset.row = r;
+    cube.dataset.col = c;
+
+    container.appendChild(cube);
+  }
+
+  // Mini interaction
+  const items = container.querySelectorAll('.cube');
+  const radius = 2; // smaller radius
+  const maxAngle = 30;
+
+  const onMove = (e) => {
+    const rect = container.getBoundingClientRect();
+    // Mouse relative to container
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const cellW = rect.width / gridSize;
+    const cellH = rect.height / gridSize;
+
+    const colCenter = x / cellW;
+    const rowCenter = y / cellH;
+
+    items.forEach(cube => {
+      const r = +cube.dataset.row;
+      const c = +cube.dataset.col;
+      const dist = Math.hypot(r - rowCenter, c - colCenter);
+
+      if (dist <= radius) {
+        const pct = 1 - dist / radius;
+        const angle = pct * maxAngle;
+        cube.style.transform = `rotateX(${-angle}deg) rotateY(${angle}deg)`;
+      } else {
+        cube.style.transform = `rotateX(0deg) rotateY(0deg)`;
+      }
+    });
+  };
+
+  const onLeave = () => {
+    items.forEach(cube => {
+      cube.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    });
+  };
+
+  // Attach to parent card for wider hit area? Or container?
+  // Let's use container for the tilt logic to run precisely
+  container.parentElement.parentElement.addEventListener('mousemove', (e) => {
+    // We need to pass event, but also ensure coordinates are relative to the grid container
+    // Actually, let's just listen on the container itself for the cubes, 
+    // while the card handles the big tilt.
+    // Wait, user wants "outer animation", maybe they WANT the cubes to react when hovering the CARD?
+    // Using container.parentElement (the card-img) or card is better.
+
+    // Let's stick to container for simplicity of coordinates first.
+    // If we bind to card, we need to rect check the container.
+  });
+
+  // Let's bind to container:
+  container.addEventListener('mousemove', onMove);
+  container.addEventListener('mouseleave', onLeave);
+
+  // Initial Shimmy
+  const mid = gridSize / 2;
+  // Manually trigger one update
+  const rect = container.getBoundingClientRect();
+  if (rect.width) {
+    onMove({
+      clientX: rect.left + rect.width / 2,
+      clientY: rect.top + rect.height / 2
+    });
+    setTimeout(onLeave, 500);
+  }
 };
 
 function formatCode(code) {
