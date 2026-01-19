@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignHub | MCP</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .mcp-content-section {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ccc;
+            padding-bottom: 4rem;
+        }
+
+        .mcp-content-section h1 {
+            color: var(--secondary);
+            font-family: var(--font-head);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+
+        .mcp-content-section h2 {
+            color: var(--primary);
+            font-family: var(--font-head);
+            font-size: 2rem;
+            margin-top: 3.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .mcp-content-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+        }
+
+        .terminal-block {
+            background: #0a0a10;
+            border: 1px solid #333;
+            border-left: 3px solid var(--secondary);
+            padding: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .terminal-block::before {
+            content: "MCPv1.0.4 [CONNECTED]";
+            position: absolute;
+            top: -10px;
+            right: 10px;
+            background: var(--bg-dark);
+            padding: 0 10px;
+            font-size: 0.7rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 2rem; padding-left: 10px;">DESIGN HUB</div>
+
+            <div class="nav-section">
+                <div class="nav-title">Get Started</div>
+                <nav class="nav-list">
+                    <a href="introduction.html" class="nav-item">Introduction</a>
+                    <a href="installation.html" class="nav-item">Installation</a>
+                    <a href="mcp.html" class="nav-item active"
+                        style="border-left-color: white; color: white; font-weight: 500;">MCP</a>
+                    <a href="index.html" class="nav-item">Index</a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Tools</div>
+                <nav class="nav-list">
+                    <a href="#" class="nav-item"><span class="nav-icon">🎨</span>Background Studio</a>
+                    <a href="#" class="nav-item"><span class="nav-icon">▵</span>Shape Magic</a>
+                    <a href="#" class="nav-item"><span class="nav-icon">🖼️</span>Texture Lab</a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Animations</div>
+                <nav class="nav-list">
+                    <a href="demo.html?id=5" class="nav-item">Animated Content</a>
+                    <a href="demo.html?id=8" class="nav-item">Fade Content</a>
+                    <a href="demo.html?id=9" class="nav-item">Electric Border</a>
+                    <a href="#" class="nav-item">Pixel Transition</a>
+                    <a href="demo.html?id=10" class="nav-item">Glare Hover</a>
+                    <a href="demo.html?id=11" class="nav-item">Logo Loop</a>
+                    <a href="demo.html?id=12" class="nav-item">Liquid Ether</a>
+                    <a href="demo.html?id=13" class="nav-item">Magnet Lines</a>
+                    <a href="#" class="nav-item">Antigravity</a>
+                    <a href="#" class="nav-item">Target Cursor</a>
+                    <a href="#" class="nav-item">Laser Flow</a>
+                    <a href="#" class="nav-item">Ghost Cursor</a>
+                    <a href="#" class="nav-item">Gradual Blur</a>
+                    <a href="#" class="nav-item">Click Spark</a>
+                    <a href="#" class="nav-item">Magnet</a>
+                    <a href="#" class="nav-item">Sticker Peel</a>
+                    <a href="#" class="nav-item">Pixel Trail</a>
+                    <a href="#" class="nav-item">Cubes</a>
+                    <a href="#" class="nav-item">Metallic Paint</a>
+                </nav>
+            </div>
+            <!-- Standard Sidebar Continued... -->
+            <div class="nav-section">
+                <div class="nav-title">Components</div>
+                <nav class="nav-list">
+                    <a href="#" class="nav-item">Animated List</a>
+                    <a href="#" class="nav-item">Scroll Stack</a>
+                    <a href="#" class="nav-item">Bubble Menu</a>
+                    <a href="#" class="nav-item">Magic Bento</a>
+                    <a href="#" class="nav-item">Circular Gallery</a>
+                    <a href="#" class="nav-item">Reflective Card</a>
+                    <a href="#" class="nav-item">Card Nav</a>
+                    <a href="#" class="nav-item">Stack</a>
+                    <a href="#" class="nav-item">Fluid Glass</a>
+                    <a href="#" class="nav-item">Pill Nav</a>
+                    <a href="#" class="nav-item">Tilted Card</a>
+                    <a href="#" class="nav-item">Masonry</a>
+                    <a href="#" class="nav-item">Glass Surface</a>
+                    <a href="#" class="nav-item">Dome Gallery</a>
+                    <a href="#" class="nav-item">Chroma Grid</a>
+                    <a href="#" class="nav-item">Folder</a>
+                    <a href="#" class="nav-item">Staggered Menu</a>
+                    <a href="#" class="nav-item">Model Viewer</a>
+                    <a href="#" class="nav-item">Lanyard</a>
+                </nav>
+            </div>
+            <div class="nav-section">
+                <div class="nav-title">Backgrounds</div>
+                <nav class="nav-list">
+                    <a href="demo.html?id=12" class="nav-item">Liquid Ether</a>
+                    <a href="#" class="nav-item">Prism</a>
+                    <a href="#" class="nav-item">Dark Veil</a>
+                    <a href="#" class="nav-item">Light Pillar</a>
+                    <a href="#" class="nav-item">Silk</a>
+                    <a href="#" class="nav-item">Floating Lines</a>
+                    <a href="#" class="nav-item">Light Rays</a>
+                    <a href="#" class="nav-item">Pixel Blast</a>
+                    <a href="#" class="nav-item">Color Bends</a>
+                    <a href="#" class="nav-item">Aurora</a>
+                    <a href="#" class="nav-item">Plasma</a>
+                    <a href="#" class="nav-item">Particles</a>
+                    <a href="#" class="nav-item">Gradient Blinds</a>
+                    <a href="#" class="nav-item">Grid Scan</a>
+                    <a href="#" class="nav-item">Beams</a>
+                    <a href="#" class="nav-item">Pixel Snow</a>
+                    <a href="#" class="nav-item">Lightning</a>
+                    <a href="#" class="nav-item">Prismatic Burst</a>
+                    <a href="#" class="nav-item">Galaxy</a>
+                    <a href="#" class="nav-item">Dither</a>
+                </nav>
+            </div>
+            <div class="nav-section">
+                <div class="nav-title">Text Animations</div>
+                <nav class="nav-list">
+                    <a href="#" class="nav-item">Split Text</a>
+                    <a href="#" class="nav-item">Blur Text</a>
+                    <a href="#" class="nav-item">Circular Text</a>
+                    <a href="#" class="nav-item">Text Type</a>
+                    <a href="#" class="nav-item">Shuffle</a>
+                    <a href="#" class="nav-item">Shiny Text</a>
+                    <a href="#" class="nav-item">Text Pressure</a>
+                    <a href="#" class="nav-item">Curved Loop</a>
+                    <a href="#" class="nav-item">Fuzzy Text</a>
+                    <a href="#" class="nav-item">Gradient Text</a>
+                    <a href="#" class="nav-item">Falling Text</a>
+                    <a href="#" class="nav-item">Text Cursor</a>
+                    <a href="#" class="nav-item">Decrypted Text</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="content-area">
+            <div class="scanline"></div>
+
+            <header>
+                <div class="header-search-container">
+                    <div class="search-wrapper">
+                        <div class="logo"><a href="index.html"
+                                style="color:white; text-decoration:none; font-family: var(--font-head); font-weight:700;">DESIGN
+                                HUB</a></div>
+                    </div>
+                </div>
+            </header>
+
+            <section class="store-section" style="padding-top: 4rem;">
+                <div class="mcp-content-section">
+                    <h1>Model Context Protocol</h1>
+                    <p>The Model Context Protocol (MCP) is the underlying architecture that powers the interactive
+                        elements within DesignHub.</p>
+                    <p>It acts as a standardized interface between the visual layer (your animations) and the state
+                        management system, ensuring that every transition is smooth, performant, and context-aware.</p>
+
+                    <div class="terminal-block">
+                        > INITIATING HANDSHAKE...<br>
+                        > CONTEXT: VISUAL_LAYER_V2<br>
+                        > SYNCING... 100%<br>
+                        > PROTOCOL ACTIVE
+                    </div>
+
+                    <h2>Core Principles</h2>
+                    <ul class="feature-list">
+                        <li><span class="highlight-text">State Preservation:</span> Animations remember their state even
+                            when unmounted.</li>
+                        <li><span class="highlight-text">Context Injection:</span> Components adapt to their container
+                            size and theme automatically.</li>
+                        <li><span class="highlight-text">Event Propagation:</span> Interactive elements broadcast events
+                            efficiently without bubbling chaos.</li>
+                    </ul>
+
+                    <h2>Integration</h2>
+                    <p>You don't need to manually configure MCP in your projects. It's built into the core
+                        `designhub-core` package, specifically designed to be invisible while doing the heavy lifting.
+                    </p>
+                </div>
+            </section>
+
+            <footer>
+                <div class="footer-status">
+                    <span>SYSTEM: <span class="status-ok">ONLINE</span></span>
+                </div>
+                <p>&copy; 2077 DESIGN HUB.</p>
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>

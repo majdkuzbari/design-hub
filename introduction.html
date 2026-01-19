@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesignHub | Introduction</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styles for introduction page text */
+        .intro-text-section {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #ccc;
+            padding-bottom: 4rem;
+        }
+
+        .intro-text-section h1 {
+            color: var(--secondary);
+            font-family: var(--font-head);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+        }
+
+        .intro-text-section h2 {
+            color: var(--secondary);
+            font-family: var(--font-head);
+            font-size: 2.2rem;
+            margin-top: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-text-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.5rem;
+            line-height: 1;
+            top: -2px;
+        }
+
+        .highlight-text {
+            color: white;
+            font-weight: 700;
+            font-family: var(--font-head);
+            margin-right: 5px;
+            text-decoration: underline;
+            text-decoration-color: var(--secondary);
+            text-underline-offset: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="sidebar">
+            <div class="logo" style="margin-bottom: 2rem; padding-left: 10px;">DESIGN HUB</div>
+
+            <div class="nav-section">
+                <div class="nav-title">Get Started</div>
+                <nav class="nav-list">
+                    <a href="introduction.html" class="nav-item active"
+                        style="border-left-color: white; color: white; font-weight: 500;">Introduction</a>
+                    <a href="installation.html" class="nav-item">Installation</a>
+                    <a href="mcp.html" class="nav-item">MCP</a>
+                    <a href="index.html" class="nav-item">Index</a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Tools</div>
+                <nav class="nav-list">
+                    <a href="#" class="nav-item"><span class="nav-icon">🎨</span>Background Studio</a>
+                    <a href="#" class="nav-item"><span class="nav-icon">▵</span>Shape Magic</a>
+                    <a href="#" class="nav-item"><span class="nav-icon">🖼️</span>Texture Lab</a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Animations</div>
+                <nav class="nav-list">
+                    <a href="demo.html?id=5" class="nav-item">Animated Content</a>
+                    <a href="demo.html?id=8" class="nav-item">Fade Content</a>
+                    <a href="demo.html?id=9" class="nav-item">Electric Border</a>
+                    <a href="#" class="nav-item">Pixel Transition</a>
+                    <a href="demo.html?id=10" class="nav-item">Glare Hover</a>
+                    <a href="demo.html?id=11" class="nav-item">Logo Loop</a>
+                    <a href="#" class="nav-item">Antigravity</a>
+                    <a href="#" class="nav-item">Logo Loop</a>
+                    <a href="#" class="nav-item">Target Cursor</a>
+                    <a href="#" class="nav-item">Laser Flow</a>
+                    <a href="#" class="nav-item">Magnet Lines</a>
+                    <a href="#" class="nav-item">Ghost Cursor</a>
+                    <a href="#" class="nav-item">Gradual Blur</a>
+                    <a href="#" class="nav-item">Click Spark</a>
+                    <a href="#" class="nav-item">Magnet</a>
+                    <a href="#" class="nav-item">Sticker Peel</a>
+                    <a href="#" class="nav-item">Pixel Trail</a>
+                    <a href="#" class="nav-item">Cubes</a>
+                    <a href="#" class="nav-item">Metallic Paint</a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Components</div>
+                <nav class="nav-list">
+                    <a href="#" class="nav-item">Animated List</a>
+                    <a href="#" class="nav-item">Scroll Stack</a>
+                    <a href="#" class="nav-item">Bubble Menu</a>
+                    <a href="#" class="nav-item">Magic Bento</a>
+                    <a href="#" class="nav-item">Circular Gallery</a>
+                    <a href="#" class="nav-item">Reflective Card</a>
+                    <a href="#" class="nav-item">Card Nav</a>
+                    <a href="#" class="nav-item">Stack</a>
+                    <a href="#" class="nav-item">Fluid Glass</a>
+                    <a href="#" class="nav-item">Pill Nav</a>
+                    <a href="#" class="nav-item">Tilted Card</a>
+                    <a href="#" class="nav-item">Masonry</a>
+                    <a href="#" class="nav-item">Glass Surface</a>
+                    <a href="#" class="nav-item">Dome Gallery</a>
+                    <a href="#" class="nav-item">Chroma Grid</a>
+                    <a href="#" class="nav-item">Folder</a>
+                    <a href="#" class="nav-item">Staggered Menu</a>
+                    <a href="#" class="nav-item">Model Viewer</a>
+                    <a href="#" class="nav-item">Lanyard</a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Backgrounds</div>
+                <nav class="nav-list">
+                    <a href="#" class="nav-item">Liquid Ether</a>
+                    <a href="#" class="nav-item">Prism</a>
+                    <a href="#" class="nav-item">Dark Veil</a>
+                    <a href="#" class="nav-item">Light Pillar</a>
+                    <a href="#" class="nav-item">Silk</a>
+                    <a href="#" class="nav-item">Floating Lines</a>
+                    <a href="#" class="nav-item">Light Rays</a>
+                    <a href="#" class="nav-item">Pixel Blast</a>
+                    <a href="#" class="nav-item">Color Bends</a>
+                    <a href="#" class="nav-item">Aurora</a>
+                    <a href="#" class="nav-item">Plasma</a>
+                    <a href="#" class="nav-item">Particles</a>
+                    <a href="#" class="nav-item">Gradient Blinds</a>
+                    <a href="#" class="nav-item">Grid Scan</a>
+                    <a href="#" class="nav-item">Beams</a>
+                    <a href="#" class="nav-item">Pixel Snow</a>
+                    <a href="#" class="nav-item">Lightning</a>
+                    <a href="#" class="nav-item">Prismatic Burst</a>
+                    <a href="#" class="nav-item">Galaxy</a>
+                    <a href="#" class="nav-item">Dither</a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Text Animations</div>
+                <nav class="nav-list">
+                    <a href="#" class="nav-item">Split Text</a>
+                    <a href="#" class="nav-item">Blur Text</a>
+                    <a href="#" class="nav-item">Circular Text</a>
+                    <a href="#" class="nav-item">Text Type</a>
+                    <a href="#" class="nav-item">Shuffle</a>
+                    <a href="#" class="nav-item">Shiny Text</a>
+                    <a href="#" class="nav-item">Text Pressure</a>
+                    <a href="#" class="nav-item">Curved Loop</a>
+                    <a href="#" class="nav-item">Fuzzy Text</a>
+                    <a href="#" class="nav-item">Gradient Text</a>
+                    <a href="#" class="nav-item">Falling Text</a>
+                    <a href="#" class="nav-item">Text Cursor</a>
+                    <a href="#" class="nav-item">Decrypted Text</a>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="content-area">
+            <div class="scanline"></div>
+
+            <header>
+                <div class="header-search-container">
+                    <div class="search-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Search...">
+                    </div>
+                    <button class="header-filter-btn">All Components <span>▼</span></button>
+                </div>
+            </header>
+
+            <section class="store-section" style="padding-top: 4rem;">
+                <div class="intro-text-section">
+                    <h1>Introduction</h1>
+                    <p>DesignHub is an open-source collection of carefully designed UI components that aim to enhance
+                        your web applications.</p>
+                    <p>This is not your typical component library, which means you won't find a set of generic buttons,
+                        inputs, or other common UI elements here.</p>
+                    <p>Basically, these components are here to help you stand out and make a statement visually by
+                        adding a touch of creativity to your projects.</p>
+
+                    <h2>Mission</h2>
+                    <p>The goal of DesignHub is simple - provide flexible, visually stunning and most importantly, free
+                        components that take web projects to the next level.</p>
+                    <p>To make that happen, the project is committed to the following principles:</p>
+                    <ul class="feature-list">
+                        <li><span class="highlight-text">Free For All:</span> You own the code, and it's free to use in
+                            your projects</li>
+                        <li><span class="highlight-text">Prop-First Approach:</span> Easy customization through
+                            thoughtfully exposed props</li>
+                        <li><span class="highlight-text">Fully Modular:</span> Install strictly what you need, DesignHub
+                            is not a dependency</li>
+                        <li><span class="highlight-text">Free Choice:</span> JS or TS, plain CSS or Tailwind, the code
+                            is all here</li>
+                    </ul>
+
+                    <h2>Free For All</h2>
+                    <p>Every component you choose to bring into your project is yours to modify or extend, because you
+                        get full visibility of the code, not just an import.</p>
+
+                    <h2>Prop-First Approach</h2>
+                    <p>Every component is designed to be flexible and customizable, with props that allow you to adjust
+                        the look and feel without having to always dive into the code.</p>
+
+                    <h2>Fully Modular</h2>
+                    <p>DesignHub is not your classic NPM library, you install only the components you need by either
+                        copying the code or using the CLI, without pulling in a whole library.</p>
+
+                    <h2>Free Choice</h2>
+                    <p>I don't want to dictate how you build your projects. Whether you prefer JavaScript or TypeScript,
+                        the system adapts to your workflow.</p>
+                </div>
+            </section>
+
+            <footer>
+                <div class="footer-status">
+                    <span>SYSTEM: <span class="status-ok">ONLINE</span></span>
+                </div>
+                <p>&copy; 2077 DESIGN HUB.</p>
+            </footer>
+        </main>
+    </div>
+</body>
+
+</html>

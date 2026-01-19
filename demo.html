@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo View | DesignHub</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <!-- GSAP Libraries for Demos -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="scanline"></div>
+
+    <header style="justify-content: space-between; padding-left: 2rem; padding-right: 2rem;">
+        <div class="logo"
+            style="font-family: var(--font-head); font-weight: 700; font-size: 1.2rem; letter-spacing: 2px;">
+            <a href="index.html" style="color: white; text-decoration: none;">DESIGN HUB</a>
+        </div>
+        <nav>
+            <ul style="list-style: none; margin: 0; padding: 0;">
+                <li><a href="index.html?skip_intro=true"
+                        style="color: #888; text-decoration: none; font-family: var(--font-head); font-size: 0.9rem; transition: color 0.3s;">BACK
+                        TO GALLERY</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="demo-layout-centered">
+
+        <div class="demo-header-row">
+            <h1 id="demo-title" class="demo-page-title">LOADING...</h1>
+            <!-- Optional Actions -->
+            <div class="demo-actions">
+                <!-- Placeholders -->
+            </div>
+        </div>
+
+        <div class="demo-controls-row">
+            <div class="view-tabs">
+                <button id="tab-preview" class="view-tab active">Preview</button>
+                <button id="tab-code" class="view-tab">Code</button>
+            </div>
+        </div>
+
+        <!-- PREVIEW PANEL -->
+        <section id="panel-preview" class="panel-view active">
+            <div class="preview-container">
+                <button id="reload-btn" class="icon-btn reload-btn" title="Reload Animation">↻</button>
+                <div id="demo-container" class="demo-canvas">
+                    <!-- Demo injected here -->
+                </div>
+            </div>
+
+            <!-- CUSTOMIZE SECTION -->
+            <div class="customize-section" id="customize-ui">
+                <h3>Customize</h3>
+                <div class="controls-grid">
+
+                    <!-- Row 1: Droptowns/Pills -->
+                    <div class="control-group" id="grp-direction">
+                        <label>Direction</label>
+                        <select id="ctrl-direction" class="custom-select">
+                            <option value="vertical">vertical</option>
+                            <option value="horizontal">horizontal</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group" id="grp-ease">
+                        <label>Ease</label>
+                        <select id="ctrl-ease" class="custom-select">
+                            <option value="power3.out">power3.out</option>
+                            <option value="power2.out">power2.out</option>
+                            <option value="ease-out">ease-out</option>
+                            <option value="bounce.out">bounce.out</option>
+                            <option value="elastic.out">elastic.out</option>
+                            <option value="circ.out">circ.out</option>
+                            <option value="expo.out">expo.out</option>
+                        </select>
+                    </div>
+
+                    <div class="control-group" id="grp-disappear-ease">
+                        <label>Disappear Ease</label>
+                        <select id="ctrl-disappear-ease" class="custom-select">
+                            <option value="power3.in">power3.in</option>
+                            <option value="power2.in">power2.in</option>
+                            <option value="bounce.in">bounce.in</option>
+                        </select>
+                    </div>
+
+                    <!-- Row 2: Toggles -->
+                    <div class="control-group" id="grp-reverse">
+                        <label>Reverse Direction</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ctrl-reverse">
+                            <label for="ctrl-reverse"></label>
+                        </div>
+                    </div>
+
+                    <div class="control-group" id="grp-opacity">
+                        <label>Animate Opacity</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ctrl-opacity" checked>
+                            <label for="ctrl-opacity"></label>
+                        </div>
+                    </div>
+
+                    <div class="control-group" id="grp-blur" style="display:none;">
+                        <label>Enable Blur</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ctrl-blur">
+                            <label for="ctrl-blur"></label>
+                        </div>
+                    </div>
+
+                    <div class="control-group" id="grp-color" style="display:none;">
+                        <label>Color</label>
+                        <input type="color" id="ctrl-color" value="#7df9ff"
+                            style="border:none; width:50px; height:30px; cursor:pointer;">
+                    </div>
+
+                    <!-- Row 3: Sliders -->
+                    <div class="control-group full-width" id="grp-speed" style="display:none;">
+                        <label>Speed: <span id="val-speed">1</span></label>
+                        <input type="range" id="ctrl-speed" min="0.1" max="5" step="0.1" value="1">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-chaos" style="display:none;">
+                        <label>Chaos: <span id="val-chaos">0.12</span></label>
+                        <input type="range" id="ctrl-chaos" min="0.01" max="1" step="0.01" value="0.12">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-radius" style="display:none;">
+                        <label>Border Radius: <span id="val-radius">24</span>px</label>
+                        <input type="range" id="ctrl-radius" min="0" max="50" step="1" value="24">
+                    </div>
+
+                    <div class="control-group" id="grp-glare-color" style="display:none;">
+                        <label>Glare Color</label>
+                        <input type="color" id="ctrl-glare-color" value="#ffffff"
+                            style="border:none; width:50px; height:30px; cursor:pointer;">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-glare-opacity" style="display:none;">
+                        <label>Glare Opacity: <span id="val-glare-opacity">0.5</span></label>
+                        <input type="range" id="ctrl-glare-opacity" min="0" max="1" step="0.1" value="0.5">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-glare-size" style="display:none;">
+                        <label>Glare Size: <span id="val-glare-size">250</span>%</label>
+                        <input type="range" id="ctrl-glare-size" min="50" max="500" step="10" value="250">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-glare-duration" style="display:none;">
+                        <label>Transition: <span id="val-glare-duration">650</span>ms</label>
+                        <input type="range" id="ctrl-glare-duration" min="100" max="2000" step="50" value="650">
+                    </div>
+
+                    <div class="control-group" id="grp-glare-play-once" style="display:none;">
+                        <label>Play Once</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ctrl-glare-play-once">
+                            <label for="ctrl-glare-play-once"></label>
+                        </div>
+                    </div>
+
+                    <!-- Logo Loop Controls -->
+                    <div class="control-group full-width" id="grp-loop-speed" style="display:none;">
+                        <label>Speed: <span id="val-loop-speed">100</span>px/s</label>
+                        <input type="range" id="ctrl-loop-speed" min="10" max="500" step="10" value="100">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-loop-gap" style="display:none;">
+                        <label>Gap: <span id="val-loop-gap">32</span>px</label>
+                        <input type="range" id="ctrl-loop-gap" min="10" max="200" step="1" value="32">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-loop-height" style="display:none;">
+                        <label>Logo Height: <span id="val-loop-height">28</span>px</label>
+                        <input type="range" id="ctrl-loop-height" min="16" max="100" step="1" value="28">
+                    </div>
+
+                    <div class="control-group" id="grp-loop-direction" style="display:none;">
+                        <label>Direction</label>
+                        <div class="toggle-pill">
+                            <span data-value="left" class="active">Left</span>
+                            <span data-value="right">Right</span>
+                        </div>
+                        <input type="hidden" id="ctrl-loop-direction" value="left">
+                    </div>
+
+                    <div class="control-group" id="grp-loop-fade" style="display:none;">
+                        <label>Fade Out</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ctrl-loop-fade" checked>
+                            <label for="ctrl-loop-fade"></label>
+                        </div>
+                    </div>
+
+                    <div class="control-group" id="grp-loop-scale" style="display:none;">
+                        <label>Scale on Hover</label>
+                        <div class="toggle-switch">
+                            <input type="checkbox" id="ctrl-loop-scale">
+                            <label for="ctrl-loop-scale"></label>
+                        </div>
+                    </div>
+
+                    <div class="control-group full-width" id="grp-distance">
+                        <label>Distance: <span id="val-distance">100</span></label>
+                        <input type="range" id="ctrl-distance" min="0" max="500" value="100">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-duration">
+                        <label>Duration: <span id="val-duration">0.8</span>s</label>
+                        <input type="range" id="ctrl-duration" min="0.1" max="5" step="0.1" value="0.8">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-delay">
+                        <label>Delay: <span id="val-delay">0</span>s</label>
+                        <input type="range" id="ctrl-delay" min="0" max="2" step="0.1" value="0">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-init-opacity">
+                        <label>Initial Opacity: <span id="val-init-opacity">0</span></label>
+                        <input type="range" id="ctrl-init-opacity" min="0" max="1" step="0.1" value="0">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-init-scale">
+                        <label>Initial Scale: <span id="val-init-scale">1</span></label>
+                        <input type="range" id="ctrl-init-scale" min="0" max="2" step="0.1" value="1">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-threshold">
+                        <label>Threshold: <span id="val-threshold">0.1</span></label>
+                        <input type="range" id="ctrl-threshold" min="0" max="1" step="0.1" value="0.1">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-disappear-after">
+                        <label>Disappear After: <span id="val-disappear-after">0</span>s</label>
+                        <input type="range" id="ctrl-disappear-after" min="0" max="5" step="0.5" value="0">
+                    </div>
+
+                    <div class="control-group full-width" id="grp-disappear-duration">
+                        <label>Disappear Duration: <span id="val-disappear-duration">0.5</span>s</label>
+                        <input type="range" id="ctrl-disappear-duration" min="0.1" max="3" step="0.1" value="0.5">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CODE PANEL -->
+        <section id="panel-code" class="panel-view">
+
+            <!-- Section: Install -->
+            <div class="code-section">
+                <h3 class="code-section-title">Install</h3>
+                <div class="code-container-full">
+                    <div class="code-top-bar">
+                        <span class="lang-tag">CLI</span>
+                        <button class="btn-copy-icon" data-target="code-install">Copy</button>
+                    </div>
+                    <pre><code id="code-install">npm install gsap</code></pre>
+                </div>
+            </div>
+
+            <!-- Section: Usage -->
+            <div class="code-section">
+                <h3 class="code-section-title">Usage <span class="code-subtitle">(with your settings)</span></h3>
+                <div class="code-container-full">
+                    <div class="code-top-bar">
+                        <span class="lang-tag">React</span>
+                        <button class="btn-copy-icon" data-target="code-usage">Copy</button>
+                    </div>
+                    <pre><code id="code-usage">// Loading dynamic usage...</code></pre>
+                </div>
+            </div>
+
+            <!-- Section: Code -->
+            <div class="code-section">
+                <h3 class="code-section-title">Code</h3>
+                <div class="code-container-full">
+                    <div class="code-top-bar">
+                        <span class="lang-tag">JSX / React</span>
+                        <button class="btn-copy-icon" data-target="code-source">Copy</button>
+                    </div>
+                    <pre><code id="code-source">// LOADING SOURCE CODE...</code></pre>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-status">
+            <span>SYSTEM: <span class="status-ok">ONLINE</span></span>
+        </div>
+    </footer>
+    </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
