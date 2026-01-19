@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DesignHub | Installation</title>
+    <title>DesignHub | Tools</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,103 +12,6 @@
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@400;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .install-content-section {
-            max-width: 800px;
-            margin: 0 auto;
-            color: #ccc;
-            padding-bottom: 4rem;
-        }
-
-        .install-content-section h1 {
-            color: var(--secondary);
-            font-family: var(--font-head);
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
-        }
-
-        .install-content-section h2 {
-            color: white;
-            font-family: var(--font-head);
-            font-size: 2rem;
-            margin-top: 3.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
-        }
-
-        .install-content-section p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-            color: #e0e0e0;
-        }
-
-        .code-block {
-            background: #000;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin: 1.5rem 0;
-            position: relative;
-            font-family: 'Courier New', Courier, monospace;
-            color: var(--primary);
-            overflow-x: auto;
-        }
-
-        .code-block::before {
-            content: '$';
-            position: absolute;
-            left: 10px;
-            top: 24px;
-            color: #555;
-            user-select: none;
-        }
-
-        .code-block code {
-            padding-left: 15px;
-            display: block;
-        }
-
-        .step-list {
-            counter-reset: install-step;
-            list-style: none;
-            padding: 0;
-        }
-
-        .step-list li {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .step-list li::before {
-            counter-increment: install-step;
-            content: counter(install-step);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 2rem;
-            height: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 2rem;
-            font-weight: bold;
-            font-family: var(--font-head);
-        }
-
-        .note-box {
-            background: rgba(0, 255, 255, 0.05);
-            border-left: 4px solid var(--primary);
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -121,21 +24,21 @@
                 <div class="nav-title">Get Started</div>
                 <nav class="nav-list">
                     <a href="introduction.html" class="nav-item">Introduction</a>
-                    <a href="installation.html" class="nav-item active"
-                        style="border-left-color: white; color: white; font-weight: 500;">Installation</a>
+                    <a href="installation.html" class="nav-item">Installation</a>
                     <a href="mcp.html" class="nav-item">MCP</a>
-                    <a href="index.html" class="nav-item">Index</a>
+                    <a href="index.html" class="nav-item" style="border-left-color: transparent;">Index</a>
                 </nav>
             </div>
 
             <div class="nav-section">
                 <div class="nav-title">Tools</div>
                 <nav class="nav-list">
-                    <a href="tools.html?id=background-studio" class="nav-item"><span
+                    <a href="tools.html?id=background-studio" class="nav-item" id="nav-bg-studio"><span
                             class="nav-icon">🎨</span>Background Studio</a>
-                    <a href="tools.html?id=shape-magic" class="nav-item"><span class="nav-icon">▵</span>Shape Magic</a>
-                    <a href="tools.html?id=texture-lab" class="nav-item"><span class="nav-icon">🖼️</span>Texture
-                        Lab</a>
+                    <a href="tools.html?id=shape-magic" class="nav-item" id="nav-shape-magic"><span
+                            class="nav-icon">▵</span>Shape Magic</a>
+                    <a href="tools.html?id=texture-lab" class="nav-item" id="nav-texture-lab"><span
+                            class="nav-icon">🖼️</span>Texture Lab</a>
                 </nav>
             </div>
 
@@ -192,7 +95,7 @@
             <div class="nav-section">
                 <div class="nav-title">Backgrounds</div>
                 <nav class="nav-list">
-                    <a href="#" class="nav-item">Liquid Ether</a>
+                    <a href="demo.html?id=12" class="nav-item">Liquid Ether</a>
                     <a href="#" class="nav-item">Prism</a>
                     <a href="#" class="nav-item">Dark Veil</a>
                     <a href="#" class="nav-item">Light Pillar</a>
@@ -249,48 +152,10 @@
                 </div>
             </header>
 
-            <section class="store-section" style="padding-top: 4rem;">
-                <div class="install-content-section">
-                    <h1>Installation</h1>
-                    <p>Get up and running with DesignHub in seconds. You can either copy components manually or use our
-                        CLI (coming soon).</p>
-
-                    <h2>Prerequisites</h2>
-                    <p>DesignHub is built to be framework-agnostic but shines with React. We rely on a few powerful
-                        libraries for animations.</p>
-                    <div class="code-block">
-                        <code>npm install framer-motion gsap three</code>
-                    </div>
-
-                    <h2>Manual Installation</h2>
-                    <ol class="step-list">
-                        <li>
-                            <strong>Select a Component</strong>
-                            <p>Browse the index and find a component you like, such as "Electric Border".</p>
-                        </li>
-                        <li>
-                            <strong>Copy the Code</strong>
-                            <p>Click on the "Code" tab in the demo view. You will usually find a CSS/JSX snippet. Copy
-                                it entirely.</p>
-                        </li>
-                        <li>
-                            <strong>Paste & Adapt</strong>
-                            <p>Paste it into your project. Since our code is "prop-first", you can usually just drop it
-                                in and pass the props you need.</p>
-                        </li>
-                    </ol>
-
-                    <div class="note-box">
-                        <strong>Note:</strong> Some components like "Color Bends" use Three.js shaders. Ensure your
-                        bundler supports import of glsl files or just copy the stringified shader code we provide.
-                    </div>
-
-                    <h2>CLI (Experimental)</h2>
-                    <p>We are working on a CLI to make this even faster.</p>
-                    <div class="code-block">
-                        <code>npx designhub-cli add electric-border</code>
-                    </div>
-
+            <section class="tool-workspace" id="tool-workspace" style="padding: 2rem;">
+                <!-- Tool content will be injected here -->
+                <div class="loading-state">
+                    <h2>INITIALIZING TOOL...</h2>
                 </div>
             </section>
 
@@ -302,6 +167,8 @@
             </footer>
         </main>
     </div>
+
+    <script src="tools.js"></script>
 </body>
 
 </html>
